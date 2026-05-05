@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 93%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 93%;
+    --primary: 150 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 80%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 50%;
+    --accent: 199 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 12%;
+    --input: 0 0% 10%;
+    --ring: 150 100% 50%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0a0a; }
+  ::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #00ff88; }
+
+  ::selection { background: rgba(0,255,136,0.15); color: #00ff88; }
+}
+
+@layer utilities {
+  /* Terminal glass panels */
+  .panel {
+    background: rgba(13, 13, 13, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid #1e1e1e;
+  }
+
+  .panel-neon {
+    background: rgba(13, 13, 13, 0.9);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.05), inset 0 0 20px rgba(0, 255, 136, 0.02);
+  }
+
+  .panel-blue {
+    background: rgba(13, 13, 13, 0.9);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.05);
+  }
+
+  /* Neon text effects */
+  .text-neon { color: #00ff88; text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+  .text-neon-blue { color: #00d4ff; text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+  .text-gradient-neon {
+    background: linear-gradient(135deg, #00ff88, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Neon border glow */
+  .border-neon { border-color: rgba(0, 255, 136, 0.4); box-shadow: 0 0 10px rgba(0, 255, 136, 0.15); }
+  .border-neon-blue { border-color: rgba(0, 212, 255, 0.4); box-shadow: 0 0 10px rgba(0, 212, 255, 0.15); }
+
+  /* Neon button */
+  .btn-neon {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    color: #00ff88;
+    transition: all 0.2s;
+  }
+  .btn-neon:hover {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: rgba(0, 255, 136, 0.6);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+  }
+
+  .btn-solid-neon {
+    background: #00ff88;
+    color: #000;
+    border: none;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-solid-neon:hover {
+    background: #00e87a;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+    transform: translateY(-1px);
+  }
+
+  /* Scan line effect */
+  .scanlines::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.05) 2px,
+      rgba(0, 0, 0, 0.05) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Status dot */
+  .status-dot-green {
+    width: 8px; height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00ff88;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .status-dot-red {
+    width: 8px; height: 8px;
+    background: #ff4444;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #ff4444;
+  }
+
+  /* Monaco editor overrides */
+  .monaco-editor-wrapper .monaco-editor {
+    background: #0d0d0d !important;
+  }
+}
