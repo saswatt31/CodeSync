@@ -17,8 +17,10 @@ const app = express();
 const server = http.createServer(app);
 
 // Socket.io
+const clientOrigins = process.env.CLIENT_URL ? process.env.CLIENT_URL.split(",") : ["http://localhost:3000"];
+
 const io = new Server(server, {
-  cors: { origin: process.env.CLIENT_URL, credentials: true },
+  cors: { origin: clientOrigins, credentials: true },
   transports: ["websocket", "polling"],
 });
 io.use(authenticateSocket);
@@ -26,7 +28,7 @@ setupSocket(io);
 app.set("io", io);
 
 // Middleware (ORDER MATTERS: CORS and JSON first)
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use(cors({ origin: clientOrigins, credentials: true }));
 app.use(cookieParser());
 app.use(express.json({ limit: "2mb" }));
 
