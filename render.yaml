@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: codesync-server
+    runtime: node
+    repo: https://github.com/${RENDER_GIT_REPO_SLUG} # Auto-detects repo
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      # Add other environment variables here or in the Render Dashboard
+      # - key: CLIENT_URL
+      #   sync: false
+      # - key: SUPABASE_URL
+      #   sync: false
+      # - key: SUPABASE_ANON_KEY
+      #   sync: false
+      # - key: JWT_SECRET
+      #   sync: false
